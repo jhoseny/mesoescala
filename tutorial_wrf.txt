@@ -1,0 +1,21 @@
+Tutorial rodada do WRF:
+
+- Carregar: 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:$HOME/wrf/LIBS/lib
+export PATH=$PATH://usr/lib64/mvapich2/bin/
+- abrir o qgis 
+1- Setar os dominios
+2 - Fazer o download dos dados geográficos
+3 - Fazer o download dos dados meteorologicos 
+4 - Rodar o geogrid, ungrib e metgrid 
+~/gis4wrf/dist/WPS-4.0-mpi/geogrid.exe
+~/gis4wrf/dist/WPS-4.0-mpi/ungrib.exe
+~/gis4wrf/dist/WPS-4.0-mpi/metgrid.exe
+
+5- Rodar o real e wrf 
+ln -s ../run_wps/met*.nc
+~/gis4wrf/dist/WRF-4.0-mpi/main/real.exe
+/usr/lib64/mvapich2/bin/mpirun -np 16  ~/gis4wrf/dist/WRF-4.0-mpi/main/wrf.exe &
+
+tail -f rsl.out.0000 #pra ver como anda a simulação
+ 
